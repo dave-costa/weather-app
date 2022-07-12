@@ -1,8 +1,12 @@
-// https://docs.cypress.io/api/table-of-contents
-
-describe("My First Test", () => {
-  it("Visits the app root url", () => {
-    cy.visit("/");
-    cy.contains("h1", "Welcome to Your Vue.js + TypeScript App");
+describe("test actions in page", () => {
+  it("should to have five initial cities", async () => {
+    await cy.visit("/");
+    await cy.get(".main").children("div").should("have.length", 5);
+  });
+  it("should add cities", async () => {
+    await cy.visit("/");
+    await cy.get("input.label__input").type("porto");
+    await cy.get(".label__icon").click();
+    await cy.get(".main").children("div").should("have.length", 6);
   });
 });
